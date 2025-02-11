@@ -25,7 +25,7 @@ app.use(express.json());
 app.use(cors());
 
 // Default route
-app.get("/", (_, res) => {
+app.get("/test", (_, res) => {
   console.log(res.getHeaders());
   res.send("Hello from backend");
 });
