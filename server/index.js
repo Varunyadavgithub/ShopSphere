@@ -2,6 +2,7 @@ import express from "express";
 import dotenv from "dotenv";
 import helmet from "helmet";
 import morgan from "morgan";
+import cors from "cors";
 import productRoute from "./routes/productRoutes.js";
 import { sql } from "./config/connectDB.js";
 import { aj } from "./lib/arcjet.js";
@@ -15,6 +16,7 @@ const app = express();
 app.use(helmet()); //helmet is a security middleware that helps you to protect your app by setting various HTTP headers
 app.use(morgan("dev")); //Log the requests.
 app.use(express.json());
+app.use(cors())
 
 // Default route
 app.get("/", (_, res) => {
