@@ -6,17 +6,23 @@ import cors from "cors";
 import productRoute from "./routes/productRoutes.js";
 import { sql } from "./config/connectDB.js";
 import { aj } from "./lib/arcjet.js";
+import path from "path";
 
 dotenv.config();
 const PORT = process.env.PORT || 5000;
+const __dirname = path.resolve();
 
 const app = express();
 
 // Middlewares
-app.use(helmet()); //helmet is a security middleware that helps you to protect your app by setting various HTTP headers
+app.use(
+  helmet({
+    contentSecurityPolicy: false,
+  })
+); //helmet is a security middleware that helps you to protect your app by setting various HTTP headers
 app.use(morgan("dev")); //Log the requests.
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 
 // Default route
 app.get("/", (_, res) => {
@@ -59,6 +65,15 @@ app.use(async (req, res, next) => {
 
 // Routes
 app.use("/api/v1/products", productRoute);
+
+if (process.env.NODE_ENV === "production") {
+  // Serve static files from the React app
+  app.use(express.static(path.join(__dirname, "/client/dist")));
+
+  app.get("*", (_, res) =>
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"))
+  );
+}
 
 // Initialize DB
 async function initDB() {
