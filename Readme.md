@@ -2,6 +2,9 @@
 
 ShopSphere is a modern e-commerce platform built using the **PERN stack** (PostgreSQL, Express, React, Node.js) with **TailwindCSS** and **Daisy UI** for styling. It includes advanced features such as **rate limiting, bot detection, global state management, and error handling** to ensure a seamless shopping experience.
 
+## 📸 Screenshot
+![Screenshot 2025-02-12 124825](https://github.com/user-attachments/assets/aefcf5b5-ca93-4593-8c1f-5f5bff56636e)
+
 ## 🚀 Features
 
 - **Tech Stack:** PERN + TailwindCSS + Daisy UI
